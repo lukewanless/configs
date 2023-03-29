@@ -1,0 +1,7 @@
+require("fzf-lua").setup({ fzf_opts = { ["--layout"] = "default" } })
+vim.keymap.set("n", "<leader>r", function() 
+	require("fzf-lua").grep_project({ fzf_opts = { ["--nth"] = "1.." } })
+end)
+vim.keymap.set("n", "<leader>sff", function() 
+	require("fzf-lua").files()
+end)
