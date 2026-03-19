@@ -34,6 +34,30 @@ cp .config/fish/config.local.fish.example ~/.config/fish/config.local.fish
 
 Then set your real values in those local files (for example `XAI_API_KEY`).
 
+## Fish command memory transfer
+
+Fish history and universal variables are machine state and are intentionally not committed.
+
+Export from your current machine:
+
+```bash
+./scripts/export-fish-state.sh
+```
+
+Or export to a specific folder:
+
+```bash
+./scripts/export-fish-state.sh ~/Desktop/fish-state
+```
+
+Import on the new machine:
+
+```bash
+./scripts/import-fish-state.sh ~/Desktop/fish-state
+```
+
+`import-fish-state.sh` backs up your current Fish state to `~/.config-backups/fish-state-import-<timestamp>/` first.
+
 ## Neovim tools
 
 See [docs/nvim-tools.md](docs/nvim-tools.md) for required and recommended CLI dependencies.
