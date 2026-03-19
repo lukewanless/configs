@@ -1,0 +1,5 @@
+.DS_Store
+.zshrc.local
+.config/fish/config.local.fish
+.private/
+fish_history
