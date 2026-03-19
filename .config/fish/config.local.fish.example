@@ -1,0 +1,3 @@
+# Copy this file to ~/.config/fish/config.local.fish and fill in local secrets.
+
+set -gx XAI_API_KEY "replace-with-your-xai-api-key"

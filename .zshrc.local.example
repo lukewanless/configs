@@ -1,0 +1,3 @@
+# Copy this file to ~/.zshrc.local and fill in your local secrets.
+
+export XAI_API_KEY="replace-with-your-xai-api-key"
