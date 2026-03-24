@@ -21,7 +21,36 @@ cd configs
 ./bootstrap.sh
 ```
 
-`bootstrap.sh` backs up existing files into `~/.config-backups/configs-<timestamp>/` before installing.
+`bootstrap.sh`:
+
+- installs Homebrew if needed
+- installs shell dependencies used by these configs: `fish`, `pyenv`, `pyenv-virtualenv`, and `nvm`
+- installs zsh and fish config files
+- creates `~/.nvm`
+- backs up existing files into `~/.config-backups/configs-<timestamp>/` before installing
+
+To also install Neovim config files:
+
+```bash
+./bootstrap.sh --with-nvim
+```
+
+After bootstrap finishes, restart your shell or run:
+
+```bash
+source ~/.zprofile
+source ~/.zshrc
+```
+
+For `nvm`, this repo uses the Homebrew-managed installation path:
+
+```bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+```
+
+Homebrew notes that `nvm` via Homebrew is unsupported by upstream. If you hit `nvm` issues, check them against the standard `nvm` install method before reporting them upstream.
 
 ## Local secrets
 
