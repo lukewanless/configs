@@ -10,6 +10,8 @@ if command -v pyenv >/dev/null 2>&1; then
   eval "$(pyenv virtualenv-init -)"
 fi
 
+export PATH="$HOME/.cargo/bin:$PATH"
+
 alias python='python3'
 alias nv='nvim'
 alias gs='git status'
@@ -19,6 +21,7 @@ alias gp='git push'
 alias pip='pip3'
 alias fs='fish'
 alias gwl='git worktree list'
+alias spt='spotatui'
 
 if [ -f "$HOME/.zshrc.local" ]; then
   source "$HOME/.zshrc.local"

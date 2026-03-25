@@ -42,6 +42,8 @@ source ~/.zprofile
 source ~/.zshrc
 ```
 
+Cargo installs user binaries into `~/.cargo/bin`. This repo adds that directory to shell `PATH` so tools such as `spotatui` are available in new zsh and Fish sessions.
+
 For `nvm`, this repo uses the Homebrew-managed installation path:
 
 ```bash
