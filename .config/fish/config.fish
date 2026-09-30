@@ -24,6 +24,7 @@ alias pip='pip3'
 alias fs='fish'
 alias gwl='git worktree list'
 alias spt='spotatui'
+alias dps='docker ps'
 
 if test -f ~/.config/fish/config.local.fish
     source ~/.config/fish/config.local.fish

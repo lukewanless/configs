@@ -26,6 +26,15 @@ alias pip='pip3'
 alias fs='fish'
 alias gwl='git worktree list'
 alias spt='spotatui'
+alias dps='docker ps'
+
+denv() {
+  docker ps --format '{{.Label "com.docker.compose.project"}}\t{{.Label "com.docker.compose.project.working_dir"}}' | sort | uniq -c |
+    while read -r count project dir; do
+      branch=$([ -n "$dir" ] && git -C "$dir" branch --show-current 2>/dev/null)
+      printf '%s\t|\t%s\t|\t%s\n' "${branch:--}" "${project:-(standalone)}" "$count"
+    done | column -t -s $'\t'
+}
 
 if [ -f "$HOME/.zshrc.local" ]; then
   source "$HOME/.zshrc.local"
