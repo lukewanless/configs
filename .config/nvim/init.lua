@@ -355,6 +355,21 @@ require("lazy").setup({
             vim.keymap.set("n", "<leader>su", strudel.update, { desc = "[S]trudel [U]pdate" })
             vim.keymap.set("n", "<leader>ss", strudel.toggle, { desc = "[S]trudel Play/[S]top" })
             vim.keymap.set("n", "<leader>sq", strudel.quit, { desc = "[S]trudel [Q]uit" })
+
+            -- Pick up edits made outside nvim and re-evaluate them in Strudel
+            local group = vim.api.nvim_create_augroup("StrudelExternalEdits", { clear = true })
+            vim.api.nvim_create_autocmd("FileChangedShellPost", {
+                group = group,
+                pattern = { "*.str", "*.std" },
+                callback = function(args)
+                    if not strudel.is_launched() then return end
+                    vim.api.nvim_exec_autocmds("TextChanged", { buffer = args.buf })
+                    vim.defer_fn(strudel.update, 200)
+                end,
+            })
+            vim.uv.new_timer():start(1000, 1000, vim.schedule_wrap(function()
+                if strudel.is_launched() then vim.cmd("silent! checktime") end
+            end))
         end,
     },
 })
