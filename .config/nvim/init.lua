@@ -343,6 +343,20 @@ require("lazy").setup({
             })
         end,
     },
+
+    -- Strudel live coding
+    {
+        "gruvw/strudel.nvim",
+        build = "npm ci",
+        config = function()
+            local strudel = require("strudel")
+            strudel.setup()
+            vim.keymap.set("n", "<leader>sl", strudel.launch, { desc = "[S]trudel [L]aunch" })
+            vim.keymap.set("n", "<leader>su", strudel.update, { desc = "[S]trudel [U]pdate" })
+            vim.keymap.set("n", "<leader>ss", strudel.toggle, { desc = "[S]trudel Play/[S]top" })
+            vim.keymap.set("n", "<leader>sq", strudel.quit, { desc = "[S]trudel [Q]uit" })
+        end,
+    },
 })
 
 -- Add some extra useful keymaps
@@ -350,6 +364,7 @@ vim.keymap.set("n", "<leader>w", "<cmd>write<cr>", { desc = "Save" })
 vim.keymap.set("n", "<leader>q", "<cmd>quit<cr>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>n", "<cmd>bnext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>p", "<cmd>bprev<cr>", { desc = "Previous buffer" })
+vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 
 -- Add some basic Neovim settings
 vim.opt.number = true           -- Show line numbers
